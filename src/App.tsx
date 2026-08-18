@@ -15,6 +15,7 @@ import './App.css'
 function App() {
   const [loading, setLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
+
   useEffect(() => {
     let frame: number
     let start: number | null = null
@@ -35,23 +36,29 @@ function App() {
     return () => cancelAnimationFrame(frame)
   }, [])
 
+  if (loading) {
+    return (
+      <>
+        <CustomCursor />
+        <Loading progress={loadingProgress} />
+      </>
+    )
+  }
+
   return (
     <>
       <CustomCursor />
-      {loading && <Loading progress={loadingProgress} />}
-      {!loading && (
-        <div className="main-content">
-          <SocialIcons />
-          <Navbar />
-          <Landing />
-          <About />
-          <WhatIDo />
-          <Career />
-          <Work />
-          <TechStack />
-          <Contact />
-        </div>
-      )}
+      <div className="main-content">
+        <SocialIcons />
+        <Navbar />
+        <Landing />
+        <About />
+        <WhatIDo />
+        <Career />
+        <Work />
+        <TechStack />
+        <Contact />
+      </div>
     </>
   )
 }
