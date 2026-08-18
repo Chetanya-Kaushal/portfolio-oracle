@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import gsap from 'gsap'
 import { CustomCursor } from './components/CustomCursor'
 import { Loading } from './components/Loading'
@@ -16,8 +16,6 @@ import './App.css'
 function App() {
   const [loading, setLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
-  const mainRef = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
     gsap.to({}, {
       duration: 2.5,
@@ -30,21 +28,12 @@ function App() {
     })
   }, [])
 
-  useEffect(() => {
-    if (!loading) {
-      gsap.fromTo(mainRef.current,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
-      )
-    }
-  }, [loading])
-
   return (
     <>
       <CustomCursor />
       {loading && <Loading progress={loadingProgress} />}
       {!loading && (
-        <div ref={mainRef} style={{ opacity: 0 }}>
+        <div className="main-content">
           <SocialIcons />
           <Navbar />
           <Landing />
