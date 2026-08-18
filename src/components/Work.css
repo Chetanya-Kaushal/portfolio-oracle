@@ -27,7 +27,24 @@
 
 .work__scroll {
   width: 100%;
-  overflow: visible;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accentColor) var(--borderColor);
+}
+
+.work__scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.work__scroll::-webkit-scrollbar-track {
+  background: var(--borderColor);
+}
+
+.work__scroll::-webkit-scrollbar-thumb {
+  background: var(--accentColor);
+  border-radius: 2px;
 }
 
 .work__cards {

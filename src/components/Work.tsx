@@ -1,9 +1,4 @@
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './Work.css'
-
-gsap.registerPlugin(ScrollTrigger)
 
 const projects = [
   {
@@ -44,41 +39,16 @@ const projects = [
 ]
 
 export function Work() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const cardsRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const scroll = scrollRef.current
-    const cards = cardsRef.current
-    if (!scroll || !cards) return
-
-    const totalScroll = cards.scrollWidth - window.innerWidth + 100
-
-    gsap.to(cards, {
-      x: -totalScroll,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top top',
-        end: `+=${totalScroll}`,
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1,
-      },
-    })
-  }, [])
-
   return (
-    <section id="work" ref={containerRef} className="work">
+    <section id="work" className="work">
       <div className="section-container">
         <div className="work__top">
           <span className="work__label">( Work )</span>
           <div className="work__line" />
         </div>
       </div>
-      <div className="work__scroll" ref={scrollRef}>
-        <div className="work__cards" ref={cardsRef}>
+      <div className="work__scroll">
+        <div className="work__cards">
           {projects.map((project, index) => (
             <div key={index} className="work__card" data-hoverable style={{ '--card-color': project.color } as React.CSSProperties}>
               <div className="work__cardNumber">{String(index + 1).padStart(2, '0')}</div>

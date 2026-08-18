@@ -1,9 +1,23 @@
-import Marquee from 'react-fast-marquee'
 import './TechStack.css'
 
 const tech1 = ['Oracle HCM Cloud', 'Fusion Payroll', 'REST API', 'OIC', 'Fast Formula', 'HDL', 'OTBI', 'BI Publisher']
 const tech2 = ['Python', 'React', 'LangChain', 'GPT-4', 'RAG', 'FastAPI', 'Next.js', 'TypeScript']
 const tech3 = ['Docker', 'AWS', 'Git', 'Linux', 'SQL', 'NoSQL', 'GraphQL', 'CI/CD']
+
+function MarqueeRow({ items, reverse = false, outline = false, speed = 40 }: { items: string[], reverse?: boolean, outline?: boolean, speed?: number }) {
+  const row = [...items, ...items]
+  return (
+    <div className="marquee-row" style={{ '--speed': `${speed}s` } as React.CSSProperties}>
+      <div className={`marquee-track ${reverse ? 'marquee-track--reverse' : ''}`}>
+        {row.map((tech, i) => (
+          <span key={i} className={`techstack__item ${outline ? 'techstack__item--outline' : ''}`} data-hoverable>
+            {tech}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export function TechStack() {
   return (
@@ -15,27 +29,9 @@ export function TechStack() {
         </div>
       </div>
       <div className="techstack__marquees">
-        <div className="techstack__row">
-          <Marquee speed={40} gradient={false}>
-            {tech1.map((tech, i) => (
-              <span key={i} className="techstack__item" data-hoverable>{tech}</span>
-            ))}
-          </Marquee>
-        </div>
-        <div className="techstack__row techstack__row--reverse">
-          <Marquee speed={35} direction="right" gradient={false}>
-            {tech2.map((tech, i) => (
-              <span key={i} className="techstack__item techstack__item--outline" data-hoverable>{tech}</span>
-            ))}
-          </Marquee>
-        </div>
-        <div className="techstack__row">
-          <Marquee speed={45} gradient={false}>
-            {tech3.map((tech, i) => (
-              <span key={i} className="techstack__item" data-hoverable>{tech}</span>
-            ))}
-          </Marquee>
-        </div>
+        <MarqueeRow items={tech1} />
+        <MarqueeRow items={tech2} reverse outline />
+        <MarqueeRow items={tech3} speed={45} />
       </div>
     </section>
   )
