@@ -54,16 +54,23 @@ export default function Projects() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.project-card', {
-        opacity: 0,
-        y: 80,
-        stagger: 0.2,
-        duration: 1,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 60%',
-        },
+      const cards = gsap.utils.toArray('.project-card')
+      cards.forEach((card, i) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 80 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: 'power3.out',
+            delay: i * 0.15,
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
       })
     }, sectionRef)
 
@@ -76,11 +83,9 @@ export default function Projects() {
       id="projects"
       className="relative min-h-screen px-6 py-32"
     >
-      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-oracle-black via-oracle-dark to-oracle-black" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Chapter label */}
         <div className="flex items-center justify-center gap-4 mb-16">
           <div className="h-px w-16 bg-gradient-to-r from-transparent to-oracle-red/50" />
           <span className="font-mono text-xs text-oracle-red tracking-widest uppercase">Chapter 05 — The Agents</span>
@@ -91,7 +96,6 @@ export default function Projects() {
           Deployed <span className="text-oracle-red">Agents</span>
         </h2>
 
-        {/* Project grid */}
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project) => (
             <a
@@ -101,7 +105,6 @@ export default function Projects() {
               onMouseEnter={() => setHoveredId(project.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              {/* Status badge */}
               <div className="flex items-center justify-between mb-6">
                 <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono tracking-wider ${
                   project.status === 'DEPLOYED' ? 'bg-neural-green/10 text-neural-green' :
@@ -124,24 +127,20 @@ export default function Projects() {
                 />
               </div>
 
-              {/* Title */}
               <h3 className="font-display text-xl font-bold text-text-primary mb-3 group-hover:text-oracle-red transition-colors">
                 {project.title}
               </h3>
 
-              {/* Description */}
               <p className="text-text-secondary text-sm leading-relaxed mb-6">
                 {project.description}
               </p>
 
-              {/* Metric */}
               <div className="mb-6">
                 <span className={`font-mono text-sm font-bold bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent`}>
                   {project.metric}
                 </span>
               </div>
 
-              {/* Tags */}
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag, i) => (
                   <span
@@ -153,7 +152,6 @@ export default function Projects() {
                 ))}
               </div>
 
-              {/* Hover glow */}
               <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500 pointer-events-none`} />
             </a>
           ))}

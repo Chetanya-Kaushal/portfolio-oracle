@@ -42,28 +42,39 @@ export default function Arsenal() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.skill-card', {
-        opacity: 0,
-        y: 40,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 65%',
-        },
+      const cards = gsap.utils.toArray('.skill-card')
+      cards.forEach((card) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
       })
 
-      // Animate skill bars
-      gsap.from('.skill-bar-fill', {
-        width: 0,
-        stagger: 0.05,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 50%',
-        },
+      const bars = gsap.utils.toArray('.skill-bar-fill')
+      bars.forEach((bar) => {
+        gsap.fromTo(bar,
+          { width: 0 },
+          {
+            width: bar.dataset.width || '100%',
+            duration: 1,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: bar,
+              start: 'top 90%',
+              toggleActions: 'play none none none',
+            },
+          }
+        )
       })
     }, sectionRef)
 
@@ -76,11 +87,9 @@ export default function Arsenal() {
       id="arsenal"
       className="relative min-h-screen px-6 py-32"
     >
-      {/* Background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(0,212,255,0.03)_0%,_transparent_50%)]" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Chapter label */}
         <div className="flex items-center justify-center gap-4 mb-16">
           <div className="h-px w-16 bg-gradient-to-r from-transparent to-oracle-red/50" />
           <span className="font-mono text-xs text-oracle-red tracking-widest uppercase">Chapter 04 — The Arsenal</span>
@@ -91,7 +100,6 @@ export default function Arsenal() {
           Agent <span className="text-neural-blue">Capabilities</span>
         </h2>
 
-        {/* Skill categories */}
         <div className="grid md:grid-cols-3 gap-8">
           {skills.map((category, ci) => (
             <div
@@ -111,6 +119,7 @@ export default function Arsenal() {
                     <div className="h-1.5 bg-hairline rounded-full overflow-hidden">
                       <div
                         className="skill-bar-fill h-full rounded-full"
+                        data-width={`${skill.level}%`}
                         style={{
                           width: `${skill.level}%`,
                           background: `linear-gradient(90deg, ${skill.color}40, ${skill.color})`,
