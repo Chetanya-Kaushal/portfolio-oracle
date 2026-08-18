@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1200px;
+  height: 630px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background grid */
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(199,70,52,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(199,70,52,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Radial glow */
+.glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(199,70,52,0.15) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Hex pattern */
+.hex-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23C74634'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  padding: 0 80px;
+}
+
+/* Icon container */
+.icon-wrap {
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+.icon-hex {
+  width: 200px;
+  height: 200px;
+}
+
+/* Text section */
+.text-section {
+  flex: 1;
+}
+
+.name {
+  font-size: 64px;
+  font-weight: 700;
+  color: #FAFAFA;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+}
+
+.name span {
+  background: linear-gradient(135deg, #C74634, #FF6B6B, #7B61FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title {
+  font-size: 22px;
+  color: #94A3B8;
+  font-weight: 400;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+.tags {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.tag-oracle {
+  background: rgba(199,70,52,0.15);
+  color: #C74634;
+  border: 1px solid rgba(199,70,52,0.3);
+}
+
+.tag-ai {
+  background: rgba(123,97,255,0.15);
+  color: #7B61FF;
+  border: 1px solid rgba(123,97,255,0.3);
+}
+
+.tag-react {
+  background: rgba(0,212,255,0.15);
+  color: #00D4FF;
+  border: 1px solid rgba(0,212,255,0.3);
+}
+
+.url {
+  position: absolute;
+  bottom: 40px;
+  right: 80px;
+  font-size: 16px;
+  color: #64748B;
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+/* Corner accents */
+.corner-tl, .corner-br {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+}
+.corner-tl {
+  top: 30px;
+  left: 30px;
+  border-top: 2px solid rgba(199,70,52,0.4);
+  border-left: 2px solid rgba(199,70,52,0.4);
+}
+.corner-br {
+  bottom: 30px;
+  right: 30px;
+  border-bottom: 2px solid rgba(0,212,255,0.4);
+  border-right: 2px solid rgba(0,212,255,0.4);
+}
+</style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="glow"></div>
+  <div class="hex-pattern"></div>
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+
+  <div class="content">
+    <div class="icon-wrap">
+      <svg class="icon-hex" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="og" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#C74634"/>
+            <stop offset="50%" stop-color="#FF6B6B"/>
+            <stop offset="100%" stop-color="#7B61FF"/>
+          </linearGradient>
+          <linearGradient id="ogRing" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#C74634"/>
+            <stop offset="100%" stop-color="#00D4FF"/>
+          </linearGradient>
+          <radialGradient id="ogGlow" cx="50%" cy="40%" r="50%">
+            <stop offset="0%" stop-color="#FF6B6B" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+        </defs>
+        <polygon points="100,10 183,57 183,143 100,190 17,143 17,57" fill="#0A0A0A" stroke="url(#ogRing)" stroke-width="3"/>
+        <circle cx="100" cy="95" r="60" fill="url(#ogGlow)"/>
+        <!-- Nodes -->
+        <circle cx="65" cy="70" r="3" fill="#00D4FF" opacity="0.4"/>
+        <circle cx="135" cy="70" r="3" fill="#00D4FF" opacity="0.4"/>
+        <circle cx="65" cy="125" r="3" fill="#7B61FF" opacity="0.4"/>
+        <circle cx="135" cy="125" r="3" fill="#7B61FF" opacity="0.4"/>
+        <line x1="65" y1="70" x2="135" y2="70" stroke="#00D4FF" stroke-width="0.6" opacity="0.2"/>
+        <line x1="65" y1="125" x2="135" y2="125" stroke="#7B61FF" stroke-width="0.6" opacity="0.2"/>
+        <line x1="65" y1="70" x2="65" y2="125" stroke="#C74634" stroke-width="0.6" opacity="0.2"/>
+        <line x1="135" y1="70" x2="135" y2="125" stroke="#C74634" stroke-width="0.6" opacity="0.2"/>
+        <text x="100" y="108" text-anchor="middle" font-family="system-ui, sans-serif" font-size="52" font-weight="700" fill="url(#og)">CK</text>
+      </svg>
+    </div>
+
+    <div class="text-section">
+      <div class="name"><span>CHETANYA</span> KAUSHAL</div>
+      <div class="title">Oracle HCM Techno-functional Consultant<br>& AI Agent Architect</div>
+      <div class="tags">
+        <span class="tag tag-oracle">Oracle Cloud Fusion</span>
+        <span class="tag tag-ai">Generative AI</span>
+        <span class="tag tag-react">React & Next.js</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="url">chetanyakaushal.com</div>
+</body>
+</html>
