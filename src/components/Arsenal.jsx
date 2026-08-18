@@ -37,6 +37,13 @@ const skills = [
   },
 ]
 
+const certifications = [
+  { name: 'Oracle HCM Cloud', issuer: 'Oracle', icon: '🏅' },
+  { name: 'React Developer', issuer: 'Meta', icon: '⚛️' },
+  { name: 'AI Fundamentals', issuer: 'Google', icon: '🧠' },
+  { name: 'AWS Cloud Practitioner', issuer: 'AWS', icon: '☁️' },
+]
+
 export default function Arsenal() {
   const sectionRef = useRef(null)
 
@@ -47,15 +54,8 @@ export default function Arsenal() {
         gsap.fromTo(card,
           { opacity: 0, y: 40 },
           {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
+            opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+            scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none none' },
           }
         )
       })
@@ -65,16 +65,15 @@ export default function Arsenal() {
         gsap.fromTo(bar,
           { width: 0 },
           {
-            width: bar.dataset.width || '100%',
-            duration: 1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: bar,
-              start: 'top 90%',
-              toggleActions: 'play none none none',
-            },
+            width: bar.dataset.width || '100%', duration: 1, ease: 'power2.out',
+            scrollTrigger: { trigger: bar, start: 'top 90%', toggleActions: 'play none none none' },
           }
         )
+      })
+
+      gsap.from('.cert-card', {
+        opacity: 0, scale: 0.8, stagger: 0.1, duration: 0.6, ease: 'back.out(1.7)',
+        scrollTrigger: { trigger: '.cert-grid', start: 'top 85%' },
       })
     }, sectionRef)
 
@@ -82,11 +81,7 @@ export default function Arsenal() {
   }, [])
 
   return (
-    <section
-      ref={sectionRef}
-      id="arsenal"
-      className="relative min-h-screen px-6 py-32"
-    >
+    <section ref={sectionRef} id="arsenal" className="relative min-h-screen px-6 py-32">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(0,212,255,0.03)_0%,_transparent_50%)]" />
 
       <div className="relative z-10 max-w-6xl mx-auto">
@@ -96,19 +91,18 @@ export default function Arsenal() {
           <div className="h-px w-16 bg-gradient-to-l from-transparent to-oracle-red/50" />
         </div>
 
-        <h2 className="font-display text-3xl md:text-5xl font-bold text-center mb-20">
+        <h2 className="font-display text-3xl md:text-5xl font-bold text-center mb-6">
           Agent <span className="text-neural-blue">Capabilities</span>
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <p className="text-text-secondary text-center max-w-2xl mx-auto mb-16">
+          A comprehensive toolkit spanning frontend development, AI integration, and enterprise solutions.
+        </p>
+
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
           {skills.map((category, ci) => (
-            <div
-              key={ci}
-              className="skill-card p-6 rounded-2xl border border-hairline-light bg-oracle-surface/20 backdrop-blur-sm hover:border-oracle-red/30 transition-all duration-500"
-            >
-              <h3 className="font-mono text-xs text-oracle-red tracking-widest uppercase mb-6">
-                {category.category}
-              </h3>
+            <div key={ci} className="skill-card p-6 rounded-2xl border border-hairline-light bg-oracle-surface/20 backdrop-blur-sm hover:border-oracle-red/30 transition-all duration-500">
+              <h3 className="font-mono text-xs text-oracle-red tracking-widest uppercase mb-6">{category.category}</h3>
               <div className="space-y-5">
                 {category.items.map((skill, si) => (
                   <div key={si}>
@@ -120,15 +114,27 @@ export default function Arsenal() {
                       <div
                         className="skill-bar-fill h-full rounded-full"
                         data-width={`${skill.level}%`}
-                        style={{
-                          width: `${skill.level}%`,
-                          background: `linear-gradient(90deg, ${skill.color}40, ${skill.color})`,
-                        }}
+                        style={{ width: `${skill.level}%`, background: `linear-gradient(90deg, ${skill.color}40, ${skill.color})` }}
                       />
                     </div>
                   </div>
                 ))}
               </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Certifications */}
+        <div className="text-center mb-8">
+          <h3 className="font-display text-2xl font-bold text-text-primary mb-4">Certifications & Credentials</h3>
+          <p className="text-text-secondary text-sm">Verified expertise across platforms</p>
+        </div>
+        <div className="cert-grid grid grid-cols-2 md:grid-cols-4 gap-4">
+          {certifications.map((cert, i) => (
+            <div key={i} className="cert-card p-4 rounded-xl border border-hairline-light bg-oracle-surface/20 backdrop-blur-sm text-center hover:border-oracle-red/30 transition-all duration-300 group">
+              <span className="text-2xl block mb-2">{cert.icon}</span>
+              <h4 className="font-display text-sm font-bold text-text-primary group-hover:text-oracle-red transition-colors">{cert.name}</h4>
+              <p className="font-mono text-xs text-text-muted mt-1">{cert.issuer}</p>
             </div>
           ))}
         </div>

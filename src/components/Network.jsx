@@ -6,10 +6,10 @@ import { GithubLogo, LinkedinLogo, TwitterLogo, EnvelopeSimple } from '@phosphor
 gsap.registerPlugin(ScrollTrigger)
 
 const socialLinks = [
-  { name: 'GitHub', icon: GithubLogo, url: 'https://github.com/chetanyakaushal', color: '#FFFFFF' },
-  { name: 'LinkedIn', icon: LinkedinLogo, url: 'https://linkedin.com/in/chetanyakaushal', color: '#0A66C2' },
-  { name: 'Twitter', icon: TwitterLogo, url: 'https://twitter.com/chetanyakaushal', color: '#1DA1F2' },
-  { name: 'Email', icon: EnvelopeSimple, url: 'mailto:hello@chetanyakaushal.com', color: '#C74634' },
+  { name: 'GitHub', icon: GithubLogo, url: 'https://github.com/chetanyakaushal', color: '#FFFFFF', followers: '100+' },
+  { name: 'LinkedIn', icon: LinkedinLogo, url: 'https://linkedin.com/in/chetanyakaushal', color: '#0A66C2', followers: '500+' },
+  { name: 'Twitter', icon: TwitterLogo, url: 'https://twitter.com/chetanyakaushal', color: '#1DA1F2', followers: '200+' },
+  { name: 'Email', icon: EnvelopeSimple, url: 'mailto:hello@chetanyakaushal.com', color: '#C74634', followers: 'Instant' },
 ]
 
 export default function Network() {
@@ -23,18 +23,15 @@ export default function Network() {
         gsap.fromTo(node,
           { opacity: 0, scale: 0 },
           {
-            opacity: 1,
-            scale: 1,
-            duration: 0.6,
-            ease: 'back.out(1.7)',
-            delay: i * 0.1,
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
+            opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.7)', delay: i * 0.1,
+            scrollTrigger: { trigger: sectionRef.current, start: 'top 80%', toggleActions: 'play none none none' },
           }
         )
+      })
+
+      gsap.from('.social-card', {
+        opacity: 0, y: 30, stagger: 0.1, duration: 0.6, ease: 'power3.out',
+        scrollTrigger: { trigger: '.social-grid', start: 'top 85%' },
       })
     }, sectionRef)
 
@@ -109,28 +106,25 @@ export default function Network() {
   }, [])
 
   return (
-    <section
-      ref={sectionRef}
-      id="network"
-      className="relative min-h-screen flex items-center justify-center px-6 py-32"
-    >
+    <section ref={sectionRef} id="network" className="relative min-h-screen flex items-center justify-center px-6 py-32">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(123,97,255,0.05)_0%,_transparent_50%)]" />
 
-      <div className="relative z-10 max-w-4xl mx-auto text-center">
+      <div className="relative z-10 max-w-5xl mx-auto text-center">
         <div className="flex items-center justify-center gap-4 mb-16">
           <div className="h-px w-16 bg-gradient-to-r from-transparent to-oracle-red/50" />
           <span className="font-mono text-xs text-oracle-red tracking-widest uppercase">Chapter 06 — The Network</span>
           <div className="h-px w-16 bg-gradient-to-l from-transparent to-oracle-red/50" />
         </div>
 
-        <h2 className="font-display text-3xl md:text-5xl font-bold mb-8">
+        <h2 className="font-display text-3xl md:text-5xl font-bold mb-6">
           Connect the <span className="text-neural-purple">Nodes</span>
         </h2>
 
-        <p className="text-text-secondary text-lg mb-16 max-w-xl mx-auto">
+        <p className="text-text-secondary text-lg mb-12 max-w-xl mx-auto">
           Every great agent needs a network. Let&apos;s connect and build something extraordinary together.
         </p>
 
+        {/* Network visualization */}
         <div className="relative w-80 h-80 mx-auto mb-16">
           <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
@@ -144,36 +138,39 @@ export default function Network() {
             const y = 50 + Math.sin(angle) * 38
 
             return (
-              <a
-                key={i}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
+              <a key={i} href={link.url} target="_blank" rel="noopener noreferrer"
                 className="network-node absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 rounded-full bg-oracle-surface border border-hairline-light flex items-center justify-center hover:border-oracle-red/50 transition-all duration-300 group cursor-pointer z-10"
                 style={{ left: `${x}%`, top: `${y}%` }}
               >
-                <link.icon
-                  className="w-5 h-5 text-text-muted group-hover:text-text-primary transition-colors"
-                  weight="fill"
-                />
+                <link.icon className="w-5 h-5 text-text-muted group-hover:text-text-primary transition-colors" weight="fill" />
               </a>
             )
           })}
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-4">
+        {/* Social cards with follower counts */}
+        <div className="social-grid grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {socialLinks.map((link, i) => (
-            <a
-              key={i}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="network-node inline-flex items-center gap-2 px-6 py-3 rounded-full border border-hairline-light text-text-secondary hover:border-oracle-red/50 hover:text-text-primary transition-all duration-300 font-mono text-sm"
+            <a key={i} href={link.url} target="_blank" rel="noopener noreferrer"
+              className="social-card p-5 rounded-xl border border-hairline-light bg-oracle-surface/20 backdrop-blur-sm hover:border-oracle-red/30 transition-all duration-300 group text-center"
             >
-              <link.icon className="w-4 h-4" weight="fill" />
-              {link.name}
+              <link.icon className="w-8 h-8 mx-auto mb-3 text-text-muted group-hover:text-oracle-red transition-colors" weight="fill" />
+              <h4 className="font-display text-sm font-bold text-text-primary group-hover:text-oracle-red transition-colors">{link.name}</h4>
+              <p className="font-mono text-xs text-text-muted mt-1">{link.followers}</p>
             </a>
           ))}
+        </div>
+
+        {/* Quick contact */}
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <a href="mailto:hello@chetanyakaushal.com" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-oracle-red text-white font-display text-sm font-semibold tracking-widest uppercase hover:bg-oracle-red-glow transition-all duration-300 cursor-pointer">
+            <EnvelopeSimple className="w-4 h-4" weight="fill" />
+            Get in Touch
+          </a>
+          <a href="https://github.com/chetanyakaushal" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-hairline-light text-text-secondary hover:border-oracle-red/50 hover:text-text-primary transition-all duration-300 font-mono text-sm cursor-pointer">
+            <GithubLogo className="w-4 h-4" weight="fill" />
+            View Code
+          </a>
         </div>
       </div>
     </section>
