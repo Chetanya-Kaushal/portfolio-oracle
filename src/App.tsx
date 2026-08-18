@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import gsap from 'gsap'
 import { CustomCursor } from './components/CustomCursor'
 import { Loading } from './components/Loading'
 import { Navbar } from './components/Navbar'
@@ -17,15 +16,23 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
   useEffect(() => {
-    gsap.to({}, {
-      duration: 2.5,
-      onUpdate: function() {
-        setLoadingProgress(Math.round(this.progress() * 100))
-      },
-      onComplete: () => {
+    let frame: number
+    let start: number | null = null
+    const duration = 2500
+
+    const animate = (ts: number) => {
+      if (!start) start = ts
+      const elapsed = ts - start
+      const progress = Math.min(Math.round((elapsed / duration) * 100), 100)
+      setLoadingProgress(progress)
+      if (progress < 100) {
+        frame = requestAnimationFrame(animate)
+      } else {
         setTimeout(() => setLoading(false), 400)
       }
-    })
+    }
+    frame = requestAnimationFrame(animate)
+    return () => cancelAnimationFrame(frame)
   }, [])
 
   return (
