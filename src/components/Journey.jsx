@@ -6,7 +6,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 const milestones = [
   {
-    year: '2020',
+    year: '2023',
     title: 'The Spark',
     description: 'Discovered the power of code. Started building web interfaces with HTML, CSS, and JavaScript. First steps into the digital world.',
     icon: '⚡',
@@ -14,7 +14,7 @@ const milestones = [
     detail: 'Built first personal website. Fell in love with creative coding.',
   },
   {
-    year: '2021',
+    year: '2024',
     title: 'The Foundation',
     description: 'B.Tech in Computer Science. Deep-dived into React, modern frameworks, and software architecture principles.',
     icon: '🧱',
@@ -22,7 +22,7 @@ const milestones = [
     detail: 'Led college tech fest website. Won hackathon for AI project.',
   },
   {
-    year: '2022',
+    year: '2025',
     title: 'The Evolution',
     description: 'Mastered React ecosystem. Built production apps. Started exploring AI/ML integration with web interfaces.',
     icon: '🚀',
@@ -30,7 +30,7 @@ const milestones = [
     detail: 'First professional role. Shipped 3 production applications.',
   },
   {
-    year: '2023',
+    year: '2026',
     title: 'The Oracle',
     description: 'Entered the AI Agent space. Built Oracle AI Agent Studio interfaces. Bridging human-AI interaction.',
     icon: '🔮',
@@ -38,7 +38,7 @@ const milestones = [
     detail: 'Oracle HCM implementation. AI agent development begins.',
   },
   {
-    year: '2024',
+    year: 'Present',
     title: 'The Architect',
     description: 'Designing next-gen AI agent interfaces. Full-stack capabilities. Building the future of intelligent UX.',
     icon: '🏗️',
