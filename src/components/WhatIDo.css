@@ -1,0 +1,100 @@
+.whatido {
+  padding: 140px 0;
+  position: relative;
+}
+
+.whatido__top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 60px;
+}
+
+.whatido__label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--textMuted);
+  white-space: nowrap;
+}
+
+.whatido__line {
+  flex: 1;
+  height: 1px;
+  background: var(--borderColor);
+}
+
+.whatido__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.whatido__card {
+  border: 1px solid var(--borderColor);
+  border-radius: 16px;
+  padding: 30px;
+  cursor: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(17, 17, 17, 0.5);
+}
+
+.whatido__card:hover {
+  border-color: var(--accentColor);
+  background: rgba(199, 70, 52, 0.05);
+  transform: translateY(-4px);
+}
+
+.whatido__card--active {
+  border-color: var(--accentColor);
+  background: rgba(199, 70, 52, 0.05);
+}
+
+.whatido__cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.whatido__icon {
+  font-size: 20px;
+  color: var(--accentColor);
+}
+
+.whatido__cardHeader h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  flex: 1;
+}
+
+.whatido__arrow {
+  font-size: 20px;
+  color: var(--textMuted);
+  transition: transform 0.3s;
+}
+
+.whatido__cardBody {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s;
+}
+
+.whatido__cardBody--open {
+  max-height: 200px;
+  padding-top: 20px;
+}
+
+.whatido__cardBody p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--textMuted);
+}
+
+@media only screen and (max-width: 900px) {
+  .whatido__grid {
+    grid-template-columns: 1fr;
+  }
+}

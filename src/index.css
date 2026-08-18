@@ -1,20 +1,17 @@
-@import "tailwindcss";
-
-@theme {
-  --color-oracle-black: #000000;
-  --color-oracle-dark: #0a0a0a;
-  --color-oracle-surface: #111111;
-  --color-oracle-red: #C74634;
-  --color-oracle-red-glow: #FF6B6B;
-  --color-neural-blue: #00D4FF;
-  --color-neural-purple: #7B61FF;
-  --color-neural-green: #00FF88;
-  --color-text-primary: #FAFAFA;
-  --color-text-secondary: #94A3B8;
-  --color-text-muted: #64748B;
-  --color-hairline: #1E1E1E;
-  --color-hairline-light: #2A2A2A;
-
+:root {
+  --accentColor: #ff6b6b;
+  --accentDark: #c74634;
+  --accentBlue: #00d4ff;
+  --accentPurple: #7b61ff;
+  --accentGreen: #00ff88;
+  --backgroundColor: #0a0a0a;
+  --bgSurface: #111111;
+  --textPrimary: #eae5ec;
+  --textMuted: #adacac;
+  --borderColor: #2a2a2a;
+  --vh: 100svh;
+  --cWidth: calc(100% - 30px);
+  --cMaxWidth: 1920px;
   --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -27,34 +24,29 @@
 }
 
 html {
-  scroll-behavior: smooth;
-  background: #000;
+  scroll-behavior: auto;
+  background: var(--backgroundColor);
 }
 
 body {
   font-family: var(--font-body);
-  background: #000;
-  color: var(--color-text-primary);
+  background: var(--backgroundColor);
+  color: var(--textPrimary);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  cursor: none;
 }
 
-::-webkit-scrollbar {
-  width: 6px;
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: none;
 }
 
-::-webkit-scrollbar-track {
-  background: #000;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+button {
+  cursor: none;
 }
 
 ::selection {
@@ -62,88 +54,41 @@ body {
   color: #fff;
 }
 
-/* Glitch effect */
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
+::-webkit-scrollbar {
+  width: 4px;
 }
 
-@keyframes glitch-color {
-  0% { text-shadow: 2px 0 #ff0000, -2px 0 #00ffff; }
-  25% { text-shadow: -2px 0 #ff0000, 2px 0 #00ffff; }
-  50% { text-shadow: 2px 2px #ff0000, -2px -2px #00ffff; }
-  75% { text-shadow: -2px 2px #ff0000, 2px -2px #00ffff; }
-  100% { text-shadow: 2px 0 #ff0000, -2px 0 #00ffff; }
+::-webkit-scrollbar-track {
+  background: var(--backgroundColor);
 }
 
-.glitch-text {
-  animation: glitch 0.3s ease-in-out;
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 2px;
 }
 
-.glitch-text::before,
-.glitch-text::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.section-container {
+  width: 1300px;
+  max-width: calc(100% - 30px);
+  margin: 0 auto;
 }
 
-.glitch-text::before {
-  animation: glitch-color 0.3s ease-in-out;
-  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-  transform: translate(-2px, -2px);
-  opacity: 0.8;
+@media only screen and (max-width: 1600px) {
+  .section-container {
+    width: 1200px;
+    max-width: calc(100% - 160px);
+  }
 }
 
-.glitch-text::after {
-  animation: glitch-color 0.3s ease-in-out reverse;
-  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
-  transform: translate(2px, 2px);
-  opacity: 0.8;
+@media only screen and (max-width: 1400px) {
+  .section-container {
+    width: 900px;
+  }
 }
 
-/* Neural network pulse */
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-@keyframes scan-line {
-  0% { top: -100%; }
-  100% { top: 100%; }
-}
-
-/* Typewriter cursor */
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-.cursor-blink::after {
-  content: '|';
-  animation: blink 1s infinite;
-  color: var(--color-oracle-red);
-}
-
-/* Section transitions */
-.section-hidden {
-  opacity: 0;
-  transform: translateY(40px);
-}
-
-.section-visible {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.32, 1);
+@media only screen and (max-width: 900px) {
+  .section-container {
+    width: 500px;
+    max-width: var(--cWidth);
+  }
 }
