@@ -6,10 +6,10 @@ import { GithubLogo, LinkedinLogo, TwitterLogo, EnvelopeSimple } from '@phosphor
 gsap.registerPlugin(ScrollTrigger)
 
 const socialLinks = [
-  { name: 'GitHub', icon: GithubLogo, url: 'https://github.com/chetanyakaushal', color: '#FFFFFF', followers: '100+' },
-  { name: 'LinkedIn', icon: LinkedinLogo, url: 'https://linkedin.com/in/chetanyakaushal', color: '#0A66C2', followers: '500+' },
-  { name: 'Twitter', icon: TwitterLogo, url: 'https://twitter.com/chetanyakaushal', color: '#1DA1F2', followers: '200+' },
-  { name: 'Email', icon: EnvelopeSimple, url: 'mailto:hello@chetanyakaushal.com', color: '#C74634', followers: 'Instant' },
+  { name: 'GitHub', icon: GithubLogo, url: 'https://github.com/chetanyakaushal', color: '#FFFFFF', stat: '100+ Repos' },
+  { name: 'LinkedIn', icon: LinkedinLogo, url: 'https://linkedin.com/in/chetanyakaushal', color: '#0A66C2', stat: '500+ Connections' },
+  { name: 'Twitter', icon: TwitterLogo, url: 'https://twitter.com/chetanyakaushal', color: '#1DA1F2', stat: '200+ Followers' },
+  { name: 'Email', icon: EnvelopeSimple, url: 'mailto:hello@chetanyakaushal.com', color: '#C74634', stat: 'Instant Reply' },
 ]
 
 export default function Network() {
@@ -78,11 +78,8 @@ export default function Network() {
         ctx.stroke()
 
         const t = (Math.sin(frame * 0.02 + i) + 1) / 2
-        const dotX = center.x + (node.x - center.x) * t
-        const dotY = center.y + (node.y - center.y) * t
-
         ctx.beginPath()
-        ctx.arc(dotX, dotY, 2, 0, Math.PI * 2)
+        ctx.arc(center.x + (node.x - center.x) * t, center.y + (node.y - center.y) * t, 2, 0, Math.PI * 2)
         ctx.fillStyle = socialLinks[i].color
         ctx.fill()
       })
@@ -101,7 +98,6 @@ export default function Network() {
       animId = requestAnimationFrame(animate)
     }
     animate()
-
     return () => cancelAnimationFrame(animId)
   }, [])
 
@@ -124,23 +120,17 @@ export default function Network() {
           Every great agent needs a network. Let&apos;s connect and build something extraordinary together.
         </p>
 
-        {/* Network visualization */}
         <div className="relative w-80 h-80 mx-auto mb-16">
           <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
-
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-oracle-surface border-2 border-oracle-red flex items-center justify-center z-10">
             <span className="font-display text-sm font-bold text-oracle-red">CK</span>
           </div>
-
           {socialLinks.map((link, i) => {
             const angle = (i / socialLinks.length) * Math.PI * 2 - Math.PI / 2
-            const x = 50 + Math.cos(angle) * 38
-            const y = 50 + Math.sin(angle) * 38
-
             return (
               <a key={i} href={link.url} target="_blank" rel="noopener noreferrer"
                 className="network-node absolute w-12 h-12 -translate-x-1/2 -translate-y-1/2 rounded-full bg-oracle-surface border border-hairline-light flex items-center justify-center hover:border-oracle-red/50 transition-all duration-300 group cursor-pointer z-10"
-                style={{ left: `${x}%`, top: `${y}%` }}
+                style={{ left: `${50 + Math.cos(angle) * 38}%`, top: `${50 + Math.sin(angle) * 38}%` }}
               >
                 <link.icon className="w-5 h-5 text-text-muted group-hover:text-text-primary transition-colors" weight="fill" />
               </a>
@@ -148,7 +138,6 @@ export default function Network() {
           })}
         </div>
 
-        {/* Social cards with follower counts */}
         <div className="social-grid grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {socialLinks.map((link, i) => (
             <a key={i} href={link.url} target="_blank" rel="noopener noreferrer"
@@ -156,12 +145,11 @@ export default function Network() {
             >
               <link.icon className="w-8 h-8 mx-auto mb-3 text-text-muted group-hover:text-oracle-red transition-colors" weight="fill" />
               <h4 className="font-display text-sm font-bold text-text-primary group-hover:text-oracle-red transition-colors">{link.name}</h4>
-              <p className="font-mono text-xs text-text-muted mt-1">{link.followers}</p>
+              <p className="font-mono text-xs text-text-muted mt-1">{link.stat}</p>
             </a>
           ))}
         </div>
 
-        {/* Quick contact */}
         <div className="flex flex-wrap items-center justify-center gap-4">
           <a href="mailto:hello@chetanyakaushal.com" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-oracle-red text-white font-display text-sm font-semibold tracking-widest uppercase hover:bg-oracle-red-glow transition-all duration-300 cursor-pointer">
             <EnvelopeSimple className="w-4 h-4" weight="fill" />
