@@ -8,6 +8,7 @@ import Arsenal from './components/Arsenal'
 import Projects from './components/Projects'
 import Network from './components/Network'
 import Contact from './components/Contact'
+import SEOSection from './components/SEOSection'
 import ChapterNav from './components/ChapterNav'
 import Footer from './components/Footer'
 
@@ -40,6 +41,7 @@ export default function App() {
           <Projects />
           <Network />
           <Contact />
+          <SEOSection />
         </main>
 
         <Footer />
