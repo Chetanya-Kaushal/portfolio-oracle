@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './About.css'
@@ -30,7 +30,9 @@ export function About() {
         </div>
         <div className="about__content" ref={textRef}>
           {words.split(' ').map((word, i) => (
-            <span key={i} className="about__word">{word} </span>
+            <Fragment key={i}>
+              <span className="about__word">{word}</span>{' '}
+            </Fragment>
           ))}
         </div>
       </div>

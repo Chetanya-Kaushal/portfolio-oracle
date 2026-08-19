@@ -19,18 +19,18 @@ export function Contact() {
           <div className="contact__info">
             <div className="contact__infoItem" data-hoverable>
               <span className="contact__infoLabel">Email</span>
-              <a href="mailto:chetanyakaushal@gmail.com" className="contact__infoValue">chetanyakaushal@gmail.com</a>
+              <a href="mailto:chetanyac.k@gmail.com" className="contact__infoValue">chetanyac.k@gmail.com</a>
             </div>
             <div className="contact__infoItem" data-hoverable>
               <span className="contact__infoLabel">Location</span>
-              <span className="contact__infoValue">India</span>
+              <span className="contact__infoValue">Ahmedabad, Gujarat, India</span>
             </div>
             <div className="contact__infoItem" data-hoverable>
               <span className="contact__infoLabel">Availability</span>
               <span className="contact__infoValue contact__infoValue--available">Open to opportunities</span>
             </div>
           </div>
-          <a href="mailto:chetanyakaushal@gmail.com" className="contact__cta" data-hoverable>
+          <a href="mailto:chetanyac.k@gmail.com" className="contact__cta" data-hoverable>
             <span>Get in Touch</span>
             <span className="contact__ctaArrow">→</span>
           </a>

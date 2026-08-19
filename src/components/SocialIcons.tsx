@@ -5,7 +5,7 @@ const socials = [
   { icon: <FiGithub />, url: 'https://github.com/Chetanya-Kaushal', label: 'GitHub' },
   { icon: <FiLinkedin />, url: 'https://linkedin.com/in/chetanyakaushal', label: 'LinkedIn' },
   { icon: <FiTwitter />, url: 'https://twitter.com/chetanyak', label: 'Twitter' },
-  { icon: <FiMail />, url: 'mailto:chetanyakaushal@gmail.com', label: 'Email' },
+  { icon: <FiMail />, url: 'mailto:chetanyac.k@gmail.com', label: 'Email' },
 ]
 
 export function SocialIcons() {
