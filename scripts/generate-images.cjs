@@ -40,21 +40,24 @@ async function generateOGImage() {
   <path d="M30,30 L90,30 L90,32 L32,32 L32,90 L30,90 Z" fill="#C74634" opacity="0.4"/>
   <path d="M1170,600 L1110,600 L1110,598 L1168,598 L1168,540 L1170,540 Z" fill="#00D4FF" opacity="0.4"/>
 
-  <!-- Icon hexagon -->
-  <g transform="translate(120, 165)">
-    <polygon points="100,5 187,52 187,148 100,195 13,148 13,52" fill="#0A0A0A" stroke="url(#ringGrad)" stroke-width="3"/>
-    <!-- Neural nodes -->
-    <circle cx="60" cy="70" r="4" fill="#00D4FF" opacity="0.5"/>
-    <circle cx="140" cy="70" r="4" fill="#00D4FF" opacity="0.5"/>
-    <circle cx="60" cy="130" r="4" fill="#7B61FF" opacity="0.5"/>
-    <circle cx="140" cy="130" r="4" fill="#7B61FF" opacity="0.5"/>
-    <line x1="60" y1="70" x2="140" y2="70" stroke="#00D4FF" stroke-width="0.8" opacity="0.3"/>
-    <line x1="60" y1="130" x2="140" y2="130" stroke="#7B61FF" stroke-width="0.8" opacity="0.3"/>
-    <line x1="60" y1="70" x2="60" y2="130" stroke="#C74634" stroke-width="0.8" opacity="0.3"/>
-    <line x1="140" y1="70" x2="140" y2="130" stroke="#C74634" stroke-width="0.8" opacity="0.3"/>
-    <line x1="60" y1="70" x2="140" y2="130" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
-    <line x1="140" y1="70" x2="60" y2="130" stroke="#FF6B6B" stroke-width="0.5" opacity="0.2"/>
-    <text x="100" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="56" font-weight="700" fill="url(#mainGrad)">CK</text>
+  <!-- Neural Crystal icon -->
+  <g transform="translate(20, 180)">
+    <polygon points="200,10 280,58 335,134 335,260 280,336 200,384 120,336 65,260 65,134 120,58"
+      fill="#0A0A0A" stroke="url(#ringGrad)" stroke-width="3"/>
+    <polygon points="200,50 298,230 102,230" fill="rgba(199,70,52,0.14)" stroke="url(#mainGrad)" stroke-width="2"/>
+    <polygon points="200,340 102,160 298,160" fill="rgba(0,212,255,0.08)" stroke="url(#ringGrad)" stroke-width="1.5" opacity="0.85"/>
+    <circle cx="200" cy="200" r="46" fill="none" stroke="url(#mainGrad)" stroke-width="1.5" stroke-dasharray="4 7"/>
+    <circle cx="200" cy="200" r="17" fill="#0A0A0A" stroke="url(#mainGrad)" stroke-width="2"/>
+    <text x="200" y="206" text-anchor="middle" font-family="system-ui, sans-serif" font-size="6" font-weight="700" fill="#FAFAFA">CK</text>
+    <circle cx="200" cy="50" r="4" fill="#00D4FF"/>
+    <circle cx="298" cy="230" r="4" fill="#7B61FF"/>
+    <circle cx="102" cy="230" r="4" fill="#C74634"/>
+    <circle cx="200" cy="340" r="3" fill="#00FF88"/>
+    <circle cx="335" cy="134" r="3" fill="#00D4FF"/>
+    <circle cx="65" cy="134" r="3" fill="#FF6B6B"/>
+    <line x1="208" y1="188" x2="248" y2="152" stroke="#C74634" stroke-width="1" opacity="0.7"/>
+    <line x1="208" y1="212" x2="248" y2="248" stroke="#00D4FF" stroke-width="1" opacity="0.7"/>
+    <line x1="192" y1="188" x2="152" y2="152" stroke="#7B61FF" stroke-width="1" opacity="0.7"/>
   </g>
 
   <!-- Text content -->
