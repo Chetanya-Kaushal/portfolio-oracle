@@ -1,0 +1,168 @@
+.macbook-section {
+  position: relative;
+  height: 250vh;
+  background: #0a0a0a;
+}
+
+.macbook-section__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 20px;
+}
+
+.macbook__title {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 3.5vw, 44px);
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -1px;
+  line-height: 1.3;
+  margin-bottom: 40px;
+  will-change: transform, opacity;
+}
+
+.macbook {
+  width: min(720px, 88vw);
+  position: relative;
+  perspective: 1600px;
+  will-change: transform;
+}
+
+/* the lid opens on its bottom hinge; GSAP scrubs rotateX -90 -> 0 */
+.macbook__lid {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: bottom center;
+  will-change: transform;
+}
+
+.macbook__screen {
+  position: absolute;
+  inset: 0;
+  border-radius: 14px 14px 4px 4px;
+  background: #000;
+  border: 10px solid #161618;
+  border-bottom-width: 14px;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(199, 70, 52, 0.08);
+}
+
+.macbook__screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.macbook__badge {
+  position: absolute;
+  top: -96px;
+  left: 50%;
+  margin-left: -32px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accentColor, #c74634);
+  background: rgba(255, 255, 255, 0.02);
+  will-change: transform, opacity;
+}
+
+/* keyboard deck below the screen */
+.macbook__base {
+  width: 114%;
+  margin-left: -7%;
+  height: 26px;
+  background: linear-gradient(180deg, #232327 0%, #1b1b1e 60%, #121214 100%);
+  border-radius: 4px 4px 16px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-top-color: rgba(255, 255, 255, 0.12);
+  position: relative;
+}
+
+.macbook__keys {
+  position: absolute;
+  top: 3px;
+  left: 8%;
+  right: 8%;
+  height: 8px;
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05) 0 26px,
+      transparent 26px 29px
+    ),
+    rgba(255, 255, 255, 0.02);
+}
+
+.macbook__trackpad {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22%;
+  height: 9px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* thin front lip under the deck */
+.macbook__bottomEdge {
+  width: 114%;
+  margin-left: -7%;
+  height: 7px;
+  background: linear-gradient(180deg, #0e0e10, #08080a);
+  border-radius: 0 0 18px 18px;
+}
+
+.macbook__bottomEdge::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12%;
+  height: 4px;
+  border-radius: 0 0 6px 6px;
+  background: #050506;
+}
+
+@media only screen and (max-width: 900px) {
+  .macbook__title {
+    margin-bottom: 24px;
+  }
+
+  .macbook__base,
+  .macbook__bottomEdge {
+    width: 108%;
+    margin-left: -4%;
+  }
+
+  .macbook__badge {
+    width: 44px;
+    height: 44px;
+    margin-left: -22px;
+    top: -64px;
+    font-size: 14px;
+  }
+
+  .macbook__screen {
+    border-width: 6px;
+    border-bottom-width: 8px;
+  }
+}

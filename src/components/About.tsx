@@ -1,6 +1,7 @@
 import { Fragment, useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { AsciiArt } from './AsciiArt'
 import './About.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -27,6 +28,10 @@ export function About() {
         <div className="about__top">
           <span className="about__label">( About )</span>
           <div className="about__line" />
+        </div>
+        <div className="about__portrait">
+          <AsciiArt resolution={80} />
+          <span className="about__portraitCaption">( me, in ascii )</span>
         </div>
         <div className="about__content" ref={textRef}>
           {words.split(' ').map((word, i) => (

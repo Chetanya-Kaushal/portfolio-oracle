@@ -54,6 +54,10 @@
   width: fit-content;
 }
 
+.work__cardContainer {
+  flex-shrink: 0;
+}
+
 .work__card {
   width: 450px;
   min-height: 400px;
@@ -61,10 +65,18 @@
   border-radius: 20px;
   padding: 40px;
   position: relative;
-  overflow: hidden;
   background: rgba(17, 17, 17, 0.5);
   transition: border-color 0.4s;
-  flex-shrink: 0;
+}
+
+/* overflow: hidden on the card would flatten its 3D space, so the glow
+   is clipped inside this dedicated layer instead */
+.work__cardClip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 20px;
+  pointer-events: none;
 }
 
 .work__card:hover {

@@ -1,5 +1,20 @@
 import { useRef } from 'react'
+import { Terminal } from './Terminal'
 import './Contact.css'
+
+const terminalCommands = [
+  'whoami',
+  'ck deploy --agent payroll --oracle-hcm',
+  'portfolio --stack',
+  'echo "let\'s build something extraordinary"',
+]
+
+const terminalOutputs: Record<number, string[]> = {
+  0: ['chetanya — oracle hcm consultant × ai agent architect'],
+  1: ['✔ RAG pipeline initialized', '✔ Oracle Fusion HCM connected', '✔ agent live — payroll running autonomously'],
+  2: ['react 19 · gsap · vite · typescript · ai'],
+  3: ["let's build something extraordinary"],
+}
 
 export function Contact() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -12,6 +27,12 @@ export function Contact() {
           <div className="contact__line" />
         </div>
         <div className="contact__content">
+          <Terminal
+            commands={terminalCommands}
+            outputs={terminalOutputs}
+            typingSpeed={45}
+            delayBetweenCommands={1000}
+          />
           <h2 className="contact__heading">
             Let's build something <br />
             <span className="contact__accent">extraordinary</span> together.

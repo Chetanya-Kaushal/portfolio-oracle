@@ -1,4 +1,5 @@
 import './Work.css'
+import { CardContainer, CardBody, CardItem } from './ThreeDCard'
 
 const projects = [
   {
@@ -50,20 +51,38 @@ export function Work() {
       <div className="work__scroll">
         <div className="work__cards">
           {projects.map((project, index) => (
-            <div key={index} className="work__card" data-hoverable style={{ '--card-color': project.color } as React.CSSProperties}>
-              <div className="work__cardNumber">{String(index + 1).padStart(2, '0')}</div>
-              <div className="work__cardContent">
-                <span className="work__subtitle">{project.subtitle}</span>
-                <h3 className="work__title">{project.title}</h3>
-                <p className="work__desc">{project.description}</p>
-                <div className="work__tags">
-                  {project.tags.map((tag, i) => (
-                    <span key={i} className="work__tag">{tag}</span>
-                  ))}
+            <CardContainer key={index} containerClassName="work__cardContainer">
+              <CardBody
+                className="work__card"
+                style={{ '--card-color': project.color } as React.CSSProperties}
+                data-hoverable
+              >
+                <CardItem as="div" translateZ={25} className="work__cardNumber">
+                  {String(index + 1).padStart(2, '0')}
+                </CardItem>
+                <div className="work__cardContent">
+                  <CardItem as="span" translateZ={60} className="work__subtitle">
+                    {project.subtitle}
+                  </CardItem>
+                  <CardItem as="h3" translateZ={100} className="work__title">
+                    {project.title}
+                  </CardItem>
+                  <CardItem as="p" translateZ={40} className="work__desc">
+                    {project.description}
+                  </CardItem>
+                  <div className="work__tags">
+                    {project.tags.map((tag, i) => (
+                      <CardItem key={i} as="span" translateZ={30} className="work__tag">
+                        {tag}
+                      </CardItem>
+                    ))}
+                  </div>
                 </div>
-              </div>
-              <div className="work__cardGlow" />
-            </div>
+                <div className="work__cardClip">
+                  <div className="work__cardGlow" />
+                </div>
+              </CardBody>
+            </CardContainer>
           ))}
         </div>
       </div>

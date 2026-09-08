@@ -10,6 +10,7 @@ import { Navbar } from './components/Navbar'
 import { CustomCursor } from './components/CustomCursor'
 import { Loading } from './components/Loading'
 import { Work } from './components/Work'
+import { MacbookScroll } from './components/MacbookScroll'
 import './App.css'
 
 function App() {
@@ -47,6 +48,13 @@ function App() {
       <WhatIDo />
       <Career />
       <Work />
+      <MacbookScroll
+        title={
+          <span>
+            This portfolio runs on React, GSAP &amp; AI. <br /> No kidding.
+          </span>
+        }
+      />
       <TechStack />
       <Contact />
     </div>

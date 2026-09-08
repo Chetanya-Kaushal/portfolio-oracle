@@ -1,0 +1,15 @@
+.tilt-body {
+  transform-style: preserve-3d;
+  transition: transform 200ms linear;
+  will-change: transform;
+}
+
+.tilt-card-body {
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.tilt-item {
+  transition: transform 200ms linear;
+  will-change: transform;
+}

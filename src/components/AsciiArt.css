@@ -1,0 +1,6 @@
+.asciiart {
+  display: block;
+  width: min(300px, 68vw);
+  margin: 0 auto;
+  background: #0a0a0a;
+}
